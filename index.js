@@ -4,6 +4,7 @@ const express = require('express');
 var request = require("request");
 
 // create LINE SDK config from env variables
+let options = {};
 
 const config = {
    channelAccessToken: 'DD9MXsqIGGYDIoXaaCbFR4vQSXvzaaYEd2deNaXr4mx8WoMsZqCfpolen2zfBSYRYcB9A3zZupfcmjjMKJuzkuOvhpyXCwnFUF1IjAT1bxD6w8gNaa6f+rDSz8CyCrXdE09D8tlmfU13Rf0W4NyjJAdB04t89/1O/w1cDnyilFU=',

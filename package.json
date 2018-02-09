@@ -1,14 +1,14 @@
 {
-"name": "AI-Bot",
-"version": "1.0.0",
-"description": "AI AI LINE bot",
-"main": "index.js",
-"dependencies": {
-   "@line/bot-sdk": "^1.0.0",
-   "express": "^4.15.2",
-   "request": "^2.81.0"
-},
-"scripts": {
-   "start": "node index.js"
- }
+   "name": "AI-Bot",
+   "version": "1.0.0",
+   "description": "AI AI LINE bot",
+   "main": "index.js",
+   "dependencies": {
+      "@line/bot-sdk": "^1.1.0",
+      "express": "^4.15.2",
+      "request": "^2.81.0"
+   },
+   "scripts": {
+      "start": "node index.js"
+   }
 }
