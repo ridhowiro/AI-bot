@@ -52,9 +52,9 @@ function handleEvent(event) {
 	   console.log(response);
 	   console.log("response "+response.answers);
 	   if(response.answers){
-		   ans="I don't understand what u say";
+  		   ans=response.answers[0].actions[0].expression;
 	   }else{
-		   ans=response.answers[0].actions[0].expression;
+			ans="I don't understand what u say";
 	   }
 
        // create a echoing text message
