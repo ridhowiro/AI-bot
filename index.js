@@ -52,9 +52,9 @@ function handleEvent(event) {
 	   console.log(response);
 	   console.log("response "+response.answers);
 	   if (typeof response.answers !== 'undefined' && response.answers > 0) {
-  		 ans=response.answers[0].actions[0].expression;
+		ans="ngommong opo ngopyok untu?";
 	   }else{
-		ans="I don't understand what u say";
+		 ans=response.answers[0].actions[0].expression;
 	   }
 
        // create a echoing text message
