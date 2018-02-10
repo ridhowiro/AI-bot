@@ -2,7 +2,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 var request = require("request");
-
+var ans;
 // create LINE SDK config from env variables
 const config = {
    channelAccessToken: 'DD9MXsqIGGYDIoXaaCbFR4vQSXvzaaYEd2deNaXr4mx8WoMsZqCfpolen2zfBSYRYcB9A3zZupfcmjjMKJuzkuOvhpyXCwnFUF1IjAT1bxD6w8gNaa6f+rDSz8CyCrXdE09D8tlmfU13Rf0W4NyjJAdB04t89/1O/w1cDnyilFU=',
@@ -47,9 +47,9 @@ function handleEvent(event) {
    request(options, function(error, response, body) {
        if (error) throw new Error(error);
        // answer fetched from susi
-       console.log(body);
 	   
        var response = (JSON.parse(body));
+	   console(response);
 	   if(response.answers[0].actions[0].expression=='undefined'){
 		   ans="I don't understand what u say";
 	   }else{
