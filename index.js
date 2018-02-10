@@ -47,7 +47,7 @@ function handleEvent(event) {
    request(options, function(error, response, body) {
        if (error) throw new Error(error);
        // answer fetched from susi
-       //console.log(body);
+       console.log(body);
        var ans = (JSON.parse(body)).answers[0].actions[0].expression;
        // create a echoing text message
        const answer = {
