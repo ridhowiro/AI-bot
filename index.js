@@ -49,7 +49,7 @@ function handleEvent(event) {
        // answer fetched from susi
 	   
        var response = (JSON.parse(body));
-	   console(response);
+	   console.log(response);
 	   if(response.answers[0].actions[0].expression=='undefined'){
 		   ans="I don't understand what u say";
 	   }else{
