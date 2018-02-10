@@ -45,12 +45,13 @@ function handleEvent(event) {
    };
 
    request(options, function(error, response, body) {
+	   ans=null;
        if (error) throw new Error(error);
        // answer fetched from susi
        console.log(body);
 	   
        var response = (JSON.parse(body));
-	   if(response.answers[0].actions[0].expression==null){
+	   if(response.answers[0].actions[0].expression=='undefined'){
 		   ans="I don't understand what u say";
 	   }else{
 		   ans=response.answers[0].actions[0].expression;
