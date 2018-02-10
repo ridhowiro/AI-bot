@@ -51,7 +51,7 @@ function handleEvent(event) {
        var response = (JSON.parse(body));
 	   console.log(response);
 	   console.log("response " +response.answers);
-	   if (response.answers !== 'undefined' && response.answers > 0) {
+	   if (typeof response.answers !== 'undefined' && response.answers.length > 0) {
 		ans="ngommong opo ngopyok untu?";
 	   }else{
 		 ans=response.answers[0].actions[0].expression;
