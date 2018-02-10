@@ -45,7 +45,6 @@ function handleEvent(event) {
    };
 
    request(options, function(error, response, body) {
-	   ans=null;
        if (error) throw new Error(error);
        // answer fetched from susi
        console.log(body);
