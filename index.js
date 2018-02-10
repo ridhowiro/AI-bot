@@ -50,11 +50,11 @@ function handleEvent(event) {
 	   
        var response = (JSON.parse(body));
 	   console.log(response);
-	   console.log("response "+if(response.answers));
-	   if(response.answers){
+	   console.log("response "+response.answers);
+	   if(typeof response.answers){
   		   ans=response.answers[0].actions[0].expression;
 	   }else{
-			ans="I don't understand what u say";
+		ans="I don't understand what u say";
 	   }
 
        // create a echoing text message
