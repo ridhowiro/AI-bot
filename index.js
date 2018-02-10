@@ -50,7 +50,7 @@ function handleEvent(event) {
 	   
        var response = (JSON.parse(body));
 	   console.log(response);
-	   if(response.answers==='undefined'){
+	   if(response.answers===null'){
 		   ans="I don't understand what u say";
 	   }else{
 		   ans=response.answers[0].actions[0].expression;
