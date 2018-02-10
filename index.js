@@ -48,10 +48,14 @@ function handleEvent(event) {
        if (error) throw new Error(error);
        // answer fetched from susi
        console.log(body);
-       var ans = (JSON.parse(body)).answers[0].actions[0].expression;
-	   if(ans==null){
-		var ans = "I don't understand what u say!"
+	   
+       var response = (JSON.parse(body));
+	   if(response.answers[0].actions[0].expression==null){
+		   ans="I don't understand what u say";
+	   }else{
+		   ans=response.answers[0].actions[0].expression;
 	   }
+
        // create a echoing text message
        const answer = {
            type: 'text',
