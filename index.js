@@ -34,7 +34,7 @@ function handleEvent(event) {
        // ignore non-text-message event
        return Promise.resolve(null);
    }
-
+   
    var options = {
        method: 'GET',
        url: 'http://api.susi.ai/susi/chat.json',
@@ -46,7 +46,7 @@ function handleEvent(event) {
 
    request(options, function(error, response, body) {
        if (error) throw new Error(error);
-       // answer fetched from susi
+       // answer fetched from susi	   
 	   
        var response = (JSON.parse(body));
 	   console.log(response);
@@ -64,8 +64,33 @@ function handleEvent(event) {
        };
 
        // use reply API
-		
-       return client.replyMessage(event.replyToken, answer);
+   		if (event.type === 'message') {
+		  const message = event.message;
+
+		  if (message.type === 'text' && message.text === 'bye') {
+			if (event.source.type === 'room') {
+			 client.replyMessage(event.replyToken, {
+				type: 'text',
+				text: 'Tega Deh Kamu!',
+			  });
+			  client.leaveRoom(event.source.roomId);
+			} else if (event.source.type === 'group') {
+				client.replyMessage(event.replyToken, {
+				type: 'text',
+				text: 'Tega Deh Kamu!',
+			  });
+			  client.leaveGroup(event.source.groupId);
+			} else {
+			  client.replyMessage(event.replyToken, {
+				type: 'text',
+				text: 'Ngga bisa Left Wek :p',
+			  });
+			  	return client.replyMessage(event.replyToken, answer);
+			}
+		  }else{
+		         return client.replyMessage(event.replyToken, answer);
+		  }
+		}	
    })
 }
 
