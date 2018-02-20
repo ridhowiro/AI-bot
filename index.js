@@ -78,7 +78,7 @@ function handleEvent(event) {
 				type: 'text',
 				text: 'Tega Deh Kamu semua!',
 			  });
-			  client.leaveGroup(event.source.groupId);
+			  client.leaveRoom(event.source.roomId);
 			} else {
 			  return client.replyMessage(event.replyToken, {
 				type: 'text',
