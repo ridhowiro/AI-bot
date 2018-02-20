@@ -89,16 +89,16 @@ function handleEvent(event) {
 			  .catch((err) => {
 				// error handling
 			  });
-			}else {
-			  return client.replyMessage(event.replyToken, {
-				type: 'text',
-				text: 'Ngga bisa Left Wek :p',
-			  });
-			}
-		  }else{
-		         return client.replyMessage(event.replyToken, answer);
-		  }
-		}	
+		  }else if(typeof response.answers !== 'undefined' && response.answers.length > 0){
+			ans=response.answers[0].actions[0].expression;
+			}else{
+			ans="ngommong opo ngopyok untu?";
+			} 
+				}
+		const answer = {
+           type: 'text',
+           text: ans
+       };
    })
 }
 
