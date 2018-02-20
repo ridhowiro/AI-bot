@@ -49,8 +49,13 @@ function handleEvent(event) {
        // answer fetched from susi	   
 	   
        var response = (JSON.parse(body));
-
-
+	   console.log(response);
+	   console.log("response " +response.answers);
+	   if (typeof response.answers !== 'undefined' && response.answers.length > 0) {
+		 ans=response.answers[0].actions[0].expression;
+	   }else{
+		ans="ngommong opo ngopyok untu?";
+	   }
 
        // create a echoing text message
        const answer = {
@@ -61,9 +66,7 @@ function handleEvent(event) {
        // use reply API
    		if (event.type === 'message') {
 		  const message = event.message;
-		if (typeof response.answers !== 'undefined' && response.answers.length > 0) {
-		 ans=response.answers[0].actions[0].expression;
-		 }else if (message.type === 'text' && message.text === 'bye') {
+		  if (message.type === 'text' && message.text === 'bye') {
 			if (event.source.type === 'room') {
 			 return client.replyMessage(event.replyToken, {
 				type: 'text',
@@ -83,15 +86,9 @@ function handleEvent(event) {
 			  });
 			}
 		  }else{
-		         ans="Ngommong opo ngopyok untu";
+		         return client.replyMessage(event.replyToken, answer);
 		  }
-		         const answer = {
-           type: 'text',
-           text: ans
-		    return client.replyMessage(event.replyToken, answer);
-       };
-		}
-		
+		}	
    })
 }
 
