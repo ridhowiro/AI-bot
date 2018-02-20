@@ -49,8 +49,6 @@ function handleEvent(event) {
        // answer fetched from susi	   
 	   
        var response = (JSON.parse(body));
-	   console.log(response);
-	   console.log("response " +response.answers);
 	   if (typeof response.answers !== 'undefined' && response.answers.length > 0) {
 		 ans=response.answers[0].actions[0].expression;
 	   }else{
@@ -66,26 +64,36 @@ function handleEvent(event) {
        // use reply API
    		if (event.type === 'message') {
 		  const message = event.message;
-
 		  if (message.type === 'text' && message.text === 'bye') {
 			if (event.source.type === 'room') {
-			 client.replyMessage(event.replyToken, {
+			 return client.replyMessage(event.replyToken, {
 				type: 'text',
 				text: 'Tega Deh Kamu!',
 			  });
 			  client.leaveRoom(event.source.roomId);
 			} else if (event.source.type === 'group') {
-				client.replyMessage(event.replyToken, {
+				return client.replyMessage(event.replyToken, {
 				type: 'text',
-				text: 'Tega Deh Kamu!',
+				text: 'Tega Deh Kamu semua!',
 			  });
 			  client.leaveGroup(event.source.groupId);
-			} else {
-			  client.replyMessage(event.replyToken, {
+			} else if (event.source.type === 'group' && message.type === 'text' && message.text === 'Ada siapa aja di grup ini?'){
+			client.getGroupMemberIds(event.source.groupId)
+			  .then((ids) => {
+				ids.forEach((id) => console.log(id));
+				return client.replyMessage(event.replyToken, {
+				type: 'text',
+				text: 'Test Gathering Data from Grup!',
+			  });
+			  })
+			  .catch((err) => {
+				// error handling
+			  });
+			}else {
+			  return client.replyMessage(event.replyToken, {
 				type: 'text',
 				text: 'Ngga bisa Left Wek :p',
 			  });
-			  	return client.replyMessage(event.replyToken, answer);
 			}
 		  }else{
 		         return client.replyMessage(event.replyToken, answer);
