@@ -49,11 +49,8 @@ function handleEvent(event) {
        // answer fetched from susi	   
 	   
        var response = (JSON.parse(body));
-	   if (typeof response.answers !== 'undefined' && response.answers.length > 0) {
-		 ans=response.answers[0].actions[0].expression;
-	   }else{
-		ans="ngommong opo ngopyok untu?";
-	   }
+
+
 
        // create a echoing text message
        const answer = {
@@ -64,7 +61,9 @@ function handleEvent(event) {
        // use reply API
    		if (event.type === 'message') {
 		  const message = event.message;
-		  if (message.type === 'text' && message.text === 'bye') {
+		if (typeof response.answers !== 'undefined' && response.answers.length > 0) {
+		 ans=response.answers[0].actions[0].expression;
+		 }else if (message.type === 'text' && message.text === 'bye') {
 			if (event.source.type === 'room') {
 			 return client.replyMessage(event.replyToken, {
 				type: 'text',
@@ -77,28 +76,22 @@ function handleEvent(event) {
 				text: 'Tega Deh Kamu semua!',
 			  });
 			  client.leaveGroup(event.source.groupId);
-			} else if (event.source.type === 'group' && message.type === 'text' && message.text === 'Ada siapa aja di grup ini?'){
-			client.getGroupMemberIds(event.source.groupId)
-			  .then((ids) => {
-				ids.forEach((id) => console.log(id));
-				return client.replyMessage(event.replyToken, {
+			} else {
+			  return client.replyMessage(event.replyToken, {
 				type: 'text',
-				text: 'Test Gathering Data from Grup!',
+				text: 'Ngga bisa Left Wek :p',
 			  });
-			  })
-			  .catch((err) => {
-				// error handling
-			  });
-		  }else if(typeof response.answers !== 'undefined' && response.answers.length > 0){
-			ans=response.answers[0].actions[0].expression;
-			}else{
-			ans="ngommong opo ngopyok untu?";
-			} 
-				}
-		const answer = {
+			}
+		  }else{
+		         ans="Ngommong opo ngopyok untu";
+		  }
+		         const answer = {
            type: 'text',
            text: ans
+		    return client.replyMessage(event.replyToken, answer);
        };
+		}
+		
    })
 }
 
